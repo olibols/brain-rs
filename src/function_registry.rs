@@ -1,7 +1,6 @@
-use std::any::Any;
 use std::collections::HashMap;
 use std::fmt;
-use std::fmt::{write, Formatter};
+use std::fmt::{Formatter};
 
 // Shared trait for all function calls
 pub trait Callable: Send + Sync {
@@ -51,12 +50,12 @@ where
 }
 
 pub struct FunctionRegistry {
-    functions: HashMap<String, Box<dyn Callable>>
+    functions: HashMap<String, Box<dyn Callable>>,
 }
 
 impl FunctionRegistry {
     pub fn new() -> Self {
-        FunctionRegistry{ functions: HashMap::new() }
+        FunctionRegistry { functions: HashMap::new() }
     }
 
     pub fn register<FunctionType, ReturnType>(&mut self, name: String, func: FunctionType, signature: String)
